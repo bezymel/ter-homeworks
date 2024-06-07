@@ -1,9 +1,9 @@
-token  =  ""
-cloud_id  = ""
-folder_id = ""
-security_group_id = ""
-subnet_id = ""
-ssh_key = ""
+token  =  "your token"
+cloud_id  = "your cloud_id"
+folder_id = "your folder_id"
+security_group_id = "your security_group_id"
+subnet_id = "your subnet_id"
+ssh_key = "your ssh_key"
 each_vm = [
   {
     vm_name = "main"
