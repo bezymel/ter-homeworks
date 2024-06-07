@@ -16,7 +16,7 @@ variable "folder_id" {
 
 variable "default_zone" {
   type        = string
-  default     = "ru-central1-a"
+  default     = "ru-central1-b"
   description = "https://cloud.yandex.ru/docs/overview/concepts/geo-scope"
 }
 variable "default_cidr" {
@@ -29,4 +29,55 @@ variable "vpc_name" {
   type        = string
   default     = "develop"
   description = "VPC network&subnet name"
+}
+
+### ssh vars
+
+variable "security_group_id" {
+  type        = string
+  description = "ID of the security group to associate with the instances"
+}
+
+variable "each_vm" {
+  type          = list(object({
+    vm_name     = string
+    cpu         = number
+    ram         = number
+    disk_volume = number
+  }))
+}
+
+variable "image_id" {
+  type       =  string
+  default    = ""
+  description = "Ubuntu 22.04"
+}
+
+variable "subnet_id" {
+  description = "ID of the subnet where the instances will be deployed"
+  type        = string
+}
+
+variable "web_cores" {
+  description = "Number of CPU cores for web instances"
+  type        = number
+  default     = 2
+}
+
+variable "web_core_fraction" {
+  description = "Core fraction for web instances"
+  type        = number
+  default     = 5
+}
+
+variable "web_memory" {
+  description = "Amount of memory for web instances (in MB)"
+  type        = number
+  default     = 1
+}
+
+variable "ssh_key" {
+  description = "The public ssh key"
+  type        = string
+  sensitive   = true
 }
