@@ -49,7 +49,7 @@ variable "each_vm" {
 
 variable "image_id" {
   type       =  string
-  default    = ""
+  default    = "your image_id"
   description = "Ubuntu 22.04"
 }
 
