@@ -1,0 +1,14 @@
+[webservers]
+%{ for web in webservers ~}
+${web} ansible_host=${web} fqdn=${web}
+%{ endfor ~}
+
+[databases]
+%{ for db in databases ~}
+${db} ansible_host=${db} fqdn=${db}
+%{ endfor ~}
+
+[storage]
+%{ for storage in storages ~}
+${storage} ansible_host=${storage} fqdn=${storage}
+%{ endfor ~}
