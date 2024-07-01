@@ -10,3 +10,16 @@ resource "yandex_vpc_subnet" "develop" {
 
 locals {
   ssh_key = ""
+
+resource "local_file" "hosts_for_ansible" {
+  content =  <<-EOT
+  %{if length(yandex_compute_instance.web) > 0}
+  [webservers]
+  %{endif}
+  %{for i in yandex_compute_instance.web }
+  ${i["name"]}   ansible_host=${i["network_interface"][0]["nat_ip_address"]}
+  %{endfor}
+  EOT
+  filename = "${abspath(path.module)}/for.cfg"
+
+}
