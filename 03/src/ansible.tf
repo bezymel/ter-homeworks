@@ -1,4 +1,4 @@
-resource "local_file" "hosts_for_ansible" {
+resource "local_file" "ansible_inventory" {
   content = <<-EOT
   %{if length(yandex_compute_instance.web) > 0}
   [webservers]
