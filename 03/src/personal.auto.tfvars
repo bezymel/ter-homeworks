@@ -18,4 +18,3 @@ each_vm = [
     disk_volume = 30
   }
 ]
-}
