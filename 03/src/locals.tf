@@ -1,16 +1,14 @@
 locals {
-  each_vm = [
-    {
-      vm_name = "main"
+  each_vm = {
+    main = {
       cpu = 2
       ram = 2
       disk_volume = 10
     },
-    {
-      vm_name = "replica"
+    replica = {
       cpu = 2
       ram = 2
       disk_volume = 30
     }
-  ]
+  }
 }
