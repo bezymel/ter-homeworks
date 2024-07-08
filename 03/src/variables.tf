@@ -38,15 +38,6 @@ variable "security_group_id" {
   description = "ID of the security group to associate with the instances"
 }
 
-variable "each_vm" {
-  type          = list(object({
-    vm_name     = string
-    cpu         = number
-    ram         = number
-    disk_volume = number
-  }))
-}
-
 variable "image_id" {
   type       =  string
   default    = "your image_id"
