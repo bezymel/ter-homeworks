@@ -1,14 +1,17 @@
-[webservers]
-%{ for web in webservers ~}
-${web} ansible_host=${web} fqdn=${web}
-%{ endfor ~}
+[web]
 
-[databases]
-%{ for db in databases ~}
-${db} ansible_host=${db} fqdn=${db}
-%{ endfor ~}
+%{~ for i in web ~}
+${i["name"]}   ansible_host=${i["network_interface"][0]["nat_ip_address"]} 
+%{~ endfor ~}
+
+[db]
+
+%{~ for i in db ~}
+${i["name"]}   ansible_host=${i["network_interface"][0]["nat_ip_address"]} 
+%{~ endfor ~}
 
 [storage]
-%{ for storage in storages ~}
-${storage} ansible_host=${storage} fqdn=${storage}
-%{ endfor ~}
+
+%{~ for i in storage ~}
+${i["name"]}   ansible_host=${i["network_interface"][0]["nat_ip_address"]} 
+%{~ endfor ~}
