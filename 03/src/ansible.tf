@@ -1,29 +1,14 @@
-resource "local_file" "hosts_for_ansible" {
-  content = <<-EOT
-  %{if length(yandex_compute_instance.web) > 0}
-  [webservers]
-  %{for i in yandex_compute_instance.web}
-  ${i.name} ansible_host=${i.network_interface.0.nat_ip_address} fqdn=${i.name}
-  %{endfor}
-  %{endif}
-
-  %{if length(yandex_compute_instance.database) > 0}
-  [databases]
-  %{for i in yandex_compute_instance.database}
-  ${i.value.name} ansible_host=${i.value.network_interface.0.nat_ip_address} fqdn=${i.value.name}
-  %{endfor}
-  %{endif}
-
-  %{if length(yandex_compute_instance.storage) > 0}
-  [storage]
-  %{for i in yandex_compute_instance.storage}
-  ${i.name} ansible_host=${i.network_interface.0.nat_ip_address} fqdn=${i.name}
-  %{endfor}
-  %{endif}
-  EOT
-  filename = "${abspath(path.module)}/hosts"
+resource "local_file" "ansible_inventory_file" {
+  content  = templatefile("${path.module}/hosts.tpl",
+    {
+      web = yandex_compute_instance.web,
+      database = yandex_compute_instance.database,
+      storage = yandex_compute_instance.storage,
+    }
+  )
+  filename = "${path.module}/ansible_inventory"
 }
 
 output "ansible_inventory" {
-  value = local_file.hosts_for_ansible.content
+  value = local_file.ansible_inventory_file.content
 }
