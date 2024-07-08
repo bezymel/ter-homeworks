@@ -1,7 +1,7 @@
 resource "yandex_compute_instance" "database" {
-  for_each = { for vm in var.each_vm : vm.vm_name => vm }
+  for_each = local.each_vm // Обратите внимание, что используется local.each_vm из locals.tf
 
-  name         = each.value.vm_name
+  name         = each.key
   zone         = var.default_zone
   platform_id  = "standard-v2"
 
