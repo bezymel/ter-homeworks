@@ -81,20 +81,3 @@ variable "ssh_key" {
   type        = string
   sensitive   = true
 }
-
-variable "each_vm" {
-each_vm = [
-  {
-    vm_name = "main"
-    cpu = 2
-    ram = 2
-    disk_volume = 10
-  },
-  {
-    vm_name = "replica"
-    cpu = 2
-    ram = 2
-    disk_volume = 30
-  }
-]
-}
