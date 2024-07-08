@@ -7,6 +7,3 @@ resource "yandex_vpc_subnet" "develop" {
   network_id     = yandex_vpc_network.develop.id
   v4_cidr_blocks = var.default_cidr
 }
-
-locals {
-  ssh_key = ""
