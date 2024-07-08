@@ -1,7 +1,7 @@
 resource "local_file" "ansible_inventory_file" {
   content  = templatefile("${path.module}/hosts.tpl",
     {
-      webservers = yandex_compute_instance.web,
+      web = yandex_compute_instance.web,
       database = yandex_compute_instance.database,
       storage = yandex_compute_instance.storage,
     }
