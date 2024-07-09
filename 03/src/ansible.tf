@@ -3,7 +3,7 @@ resource "local_file" "ansible_inventory_file" {
     {
       web = yandex_compute_instance.web,
       database = yandex_compute_instance.database,
-      storage = yandex_compute_instance.storage,
+      storage = [yandex_compute_instance.storage]
     }
   )
   filename = "${path.module}/ansible_inventory"
