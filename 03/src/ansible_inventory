@@ -1,7 +1,9 @@
+ansible_inventory = <<EOT
 [webservers]
-web-1   ansible_host=web-2   ansible_host=
+web-1   ansible_host=84.201.137.251web-2   ansible_host=84.201.155.136
 [databases]
-main   ansible_host=replica   ansible_host=
+main   ansible_host=51.250.29.203replica   ansible_host=51.250.105.208
 
 [storage]
-storage   ansible_host=84.252.142.96
+storage   ansible_host=51.250.107.110
+EOT
