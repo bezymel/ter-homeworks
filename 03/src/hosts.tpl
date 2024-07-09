@@ -1,20 +1,18 @@
-{% if web -%}
-[web]
-{% for instance in web %}
-{{ instance.private_ip }}
-{% endfor %}
-{% endif %}
+[webservers]
 
-{% if database -%}
-[database]
-{% for instance in database %}
-{{ instance.private_ip }}
-{% endfor %}
-{% endif %}
+%{~ for i in web ~}
+${i["name"]}   ansible_host=${i["network_interface"][0]["nat_ip_address"]}
+%{~ endfor ~}
 
-{% if storage -%}
+[databases]
+
+%{~ for i in database ~}
+${i["name"]}   ansible_host=${i["network_interface"][0]["nat_ip_address"]}
+%{~ endfor ~}
+
+
 [storage]
-{% for instance in storage %}
-{{ instance.private_ip }}
-{% endfor %}
-{% endif %}
+
+%{~ for i in storage ~}
+${i["name"]}   ansible_host=${i["network_interface"][0]["nat_ip_address"]}
+%{~ endfor ~}
