@@ -18,7 +18,8 @@ resource "yandex_compute_instance" "database" {
   }
 
   network_interface {
-    subnet_id         = var.subnet_id
+    subnet_id          = var.subnet_id
     security_group_ids = [var.security_group_id]
+    nat                = true
   }
 }
