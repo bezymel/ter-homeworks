@@ -8,6 +8,10 @@ resource "yandex_vpc_subnet" "develop" {
   v4_cidr_blocks = var.default_cidr
 }
 
+data "yandex_compute_image" "ubuntu-2004-lts" {
+  family = "ubuntu-2004-lts"
+}
+
 locals {
   ssh_key = ""
 }
